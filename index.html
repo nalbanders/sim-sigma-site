@@ -114,53 +114,70 @@
       );
     }
 
-    /* Diamond badge ─────────────────────────────────────────── */
-    .hero-badge {
+    /* Hero content stack ────────────────────────────────────── */
+    .hero-content {
       position: relative;
       z-index: 2;
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.6rem;
+    }
+
+    /* Diamond badge — tight around icon only ────────────────── */
+    .hero-badge {
+      position: relative;
+      display: flex;
       align-items: center;
       justify-content: center;
-      width: 520px;
-      height: 520px;
+      width: 170px;
+      height: 170px;
     }
     .hero-badge-diamond {
       position: absolute;
       inset: 0;
-      background: rgba(3,4,3,0.86);
+      background: #030403;
       transform: rotate(45deg);
-      border: 1px solid rgba(57,216,0,0.28);
-      box-shadow: 0 0 60px rgba(57,216,0,0.08), inset 0 0 40px rgba(57,216,0,0.04);
+      border: 1px solid rgba(57,216,0,0.35);
     }
     .hero-badge-content {
       position: relative;
       z-index: 1;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 0.9rem;
-      padding: 0 3rem;
+      justify-content: center;
     }
     .hero-badge-content img {
-      width: 260px;
+      width: 96px;
       height: auto;
+    }
+
+    /* Big screen-overlaid text ──────────────────────────────── */
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4.5rem, 11vw, 9.5rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: #F4F7F5;
+      text-shadow: 0 2px 40px rgba(0,0,0,0.5);
+      line-height: 1;
     }
     .hero-tagline {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.62rem;
+      font-size: clamp(0.65rem, 1.4vw, 0.9rem);
       font-weight: 500;
-      letter-spacing: 0.32em;
+      letter-spacing: 0.42em;
       text-transform: uppercase;
-      color: rgba(244,247,245,0.72);
+      color: rgba(244,247,245,0.80);
+      text-shadow: 0 1px 20px rgba(0,0,0,0.55);
     }
     .hero-cta {
       display: inline-block;
-      margin-top: 0.4rem;
-      padding: 0.7rem 2rem;
-      border: 1px solid rgba(196,160,106,0.6);
+      padding: 0.85rem 2.5rem;
+      border: 1px solid rgba(196,160,106,0.65);
       color: var(--cream);
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.58rem;
+      font-size: 0.6rem;
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
@@ -458,10 +475,10 @@
       .nav-links { display: none; }
       .section { padding: 5.5rem 1.5rem; }
 
-      .hero-badge { width: 340px; height: 340px; }
-      .hero-badge-content img { width: 180px; }
-      .hero-tagline { font-size: 0.54rem; letter-spacing: 0.22em; }
-      .hero-cta { display: none; }
+      .hero-badge { width: 140px; height: 140px; }
+      .hero-badge-content img { width: 78px; }
+      .hero-title { font-size: clamp(3rem, 13vw, 5rem); }
+      .hero-tagline { font-size: 0.54rem; letter-spacing: 0.28em; }
 
       .services-grid {
         grid-template-columns: 1fr;
@@ -511,13 +528,16 @@
        to the site folder with that filename to activate this.            -->
   <section class="hero" id="home" aria-label="Hero">
     <div class="hero-overlay" aria-hidden="true"></div>
-    <div class="hero-badge">
-      <div class="hero-badge-diamond" aria-hidden="true"></div>
-      <div class="hero-badge-content">
-        <img src="logo-mockup.png" alt="Sim Sigma">
-        <p class="hero-tagline">Outplay the Average</p>
-        <a href="#contact" class="hero-cta">Get in Touch</a>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="hero-badge-diamond" aria-hidden="true"></div>
+        <div class="hero-badge-content">
+          <img src="logo-assets/sim-sigma-icon.svg" alt="Sim Sigma icon">
+        </div>
       </div>
+      <h1 class="hero-title">Sim Sigma</h1>
+      <p class="hero-tagline">Outplay the Average</p>
+      <a href="#contact" class="hero-cta">Get in Touch</a>
     </div>
   </section>
 
