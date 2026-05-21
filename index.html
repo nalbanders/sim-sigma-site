@@ -7,7 +7,7 @@
   <meta name="description" content="Sim Sigma offers premium golf simulator equipment sales, studio design and build, and mobile event rentals in Southern California.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
   <style>
 
     /* ─── PALETTE ────────────────────────────────────────────── */
@@ -121,24 +121,47 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1.6rem;
+      gap: 1.2rem;
+      padding: 0 2rem;
+      width: 100%;
     }
 
-    /* Diamond badge — tight around icon only ────────────────── */
+    /* SIM [circle] SIGMA row ────────────────────────────────── */
+    .hero-wordmark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      line-height: 1;
+    }
+    .hero-word {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 8.5rem);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #F4F7F5;
+      text-shadow: 0 2px 30px rgba(0,0,0,0.6);
+    }
+
+    /* Circle badge ──────────────────────────────────────────── */
     .hero-badge {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 170px;
-      height: 170px;
+      /* size relative to font so it scales with viewport */
+      width: clamp(120px, 13vw, 200px);
+      height: clamp(120px, 13vw, 200px);
+      flex-shrink: 0;
     }
-    .hero-badge-diamond {
+    .hero-badge-circle {
       position: absolute;
       inset: 0;
       background: #030403;
-      transform: rotate(45deg);
-      border: 1px solid rgba(57,216,0,0.35);
+      border-radius: 50%;
+      border: 1.5px solid rgba(57,216,0,0.4);
+      box-shadow: 0 0 30px rgba(57,216,0,0.12);
     }
     .hero-badge-content {
       position: relative;
@@ -146,34 +169,31 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 72%;
+      height: 72%;
     }
     .hero-badge-content img {
-      width: 96px;
+      width: 100%;
       height: auto;
     }
 
-    /* Big screen-overlaid text ──────────────────────────────── */
-    .hero-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(3.5rem, 10vw, 9rem);
-      font-weight: 700;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: #39D800;
-      text-shadow: 0 0 40px rgba(57,216,0,0.35), 0 2px 30px rgba(0,0,0,0.5);
-      line-height: 1;
-    }
+    /* Tagline — stretches to match wordmark width ───────────── */
     .hero-tagline {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(0.6rem, 1.3vw, 0.82rem);
-      font-weight: 500;
-      letter-spacing: 0.48em;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(0.55rem, 1.35vw, 1.1rem);
+      font-weight: 700;
+      letter-spacing: 0.55em;
       text-transform: uppercase;
-      color: rgba(244,247,245,0.85);
+      color: rgba(244,247,245,0.82);
       text-shadow: 0 1px 20px rgba(0,0,0,0.55);
+      width: 100%;
+      text-align: justify;
+      text-align-last: justify;
+      max-width: clamp(340px, 72vw, 900px);
     }
     .hero-cta {
       display: inline-block;
+      margin-top: 0.4rem;
       padding: 0.85rem 2.5rem;
       border: 1px solid rgba(196,160,106,0.65);
       color: var(--cream);
@@ -476,10 +496,9 @@
       .nav-links { display: none; }
       .section { padding: 5.5rem 1.5rem; }
 
-      .hero-badge { width: 140px; height: 140px; }
-      .hero-badge-content img { width: 78px; }
-      .hero-title { font-size: clamp(3rem, 13vw, 5rem); }
-      .hero-tagline { font-size: 0.54rem; letter-spacing: 0.28em; }
+      .hero-word { font-size: clamp(2.4rem, 10vw, 4rem); }
+      .hero-badge { width: clamp(80px, 11vw, 120px); height: clamp(80px, 11vw, 120px); }
+      .hero-tagline { font-size: clamp(0.42rem, 1.1vw, 0.7rem); }
 
       .services-grid {
         grid-template-columns: 1fr;
@@ -530,13 +549,16 @@
   <section class="hero" id="home" aria-label="Hero">
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-content">
-      <div class="hero-badge">
-        <div class="hero-badge-diamond" aria-hidden="true"></div>
-        <div class="hero-badge-content">
-          <img src="logo-mockup-crop.png" alt="Sim Sigma icon">
+      <div class="hero-wordmark" role="heading" aria-level="1" aria-label="Sim Sigma">
+        <span class="hero-word">Sim</span>
+        <div class="hero-badge">
+          <div class="hero-badge-circle" aria-hidden="true"></div>
+          <div class="hero-badge-content">
+            <img src="logo-mockup-crop.png" alt="">
+          </div>
         </div>
+        <span class="hero-word">Sigma</span>
       </div>
-      <h1 class="hero-title">Sim Sigma</h1>
       <p class="hero-tagline">Outplay the Average</p>
       <a href="#contact" class="hero-cta">Get in Touch</a>
     </div>
