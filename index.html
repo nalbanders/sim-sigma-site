@@ -127,11 +127,43 @@
       margin-top: auto;
     }
 
-    /* Logo title banner ─────────────────────────────────────── */
-    .hero-logo-banner {
-      width: clamp(320px, 72vw, 980px);
-      height: auto;
+    /* Hero wordmark ─────────────────────────────────────────── */
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 16vw, 15rem);
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #F4F7F5;
+      text-shadow: 0 2px 40px rgba(0,0,0,0.5);
+      line-height: 0.9;
+    }
+    .hero-tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(0.7rem, 1.6vw, 1.2rem);
+      font-weight: 500;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: rgba(244,247,245,0.85);
+      text-shadow: 0 1px 20px rgba(0,0,0,0.5);
+    }
+
+    /* Hamburger ─────────────────────────────────────────────── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px 4px;
+    }
+    .nav-hamburger span {
       display: block;
+      width: 22px;
+      height: 2px;
+      background: rgba(244,247,245,0.85);
+      transition: opacity 0.2s;
     }
 
     .hero-cta {
@@ -437,12 +469,31 @@
 
     /* ─── RESPONSIVE ─────────────────────────────────────────── */
     @media (max-width: 960px) {
-      .nav { padding: 0.75rem 1.75rem; }
-      .nav-links { display: none; }
+      /* Nav */
+      .nav { padding: 0.65rem 1.25rem; position: relative; flex-wrap: wrap; }
+      .nav-logo img { height: 48px !important; }
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: rgba(3,4,3,0.97);
+        flex-direction: column;
+        gap: 0;
+        padding: 0.5rem 0 1rem;
+        border-bottom: 1px solid rgba(57,216,0,0.15);
+        z-index: 300;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { text-align: center; }
+      .nav-links a { display: block; padding: 0.75rem 2rem; font-size: 0.7rem; }
+
       .section { padding: 5.5rem 1.5rem; }
 
-      .hero-title { font-size: clamp(4rem, 16vw, 7rem); }
-      .hero-tagline { font-size: clamp(0.6rem, 2vw, 1rem); letter-spacing: 0.25em; }
+      .hero-title { font-size: clamp(3.5rem, 16vw, 6rem); letter-spacing: 0.1em; }
+      .hero-tagline { font-size: clamp(0.6rem, 2.5vw, 0.85rem); letter-spacing: 0.3em; }
+      .hero-content { padding: 0 1.5rem 14vh; }
 
       .services-grid {
         grid-template-columns: 1fr;
@@ -455,7 +506,8 @@
         grid-template-columns: 1fr;
         gap: 3rem;
       }
-      .about-video { aspect-ratio: 4/3; }
+      /* Taller video on mobile so the swing is visible */
+      .about-video { aspect-ratio: 9/16; max-height: 520px; object-fit: cover; }
       .about-photo-accent { display: none; }
       .about-text .section-eyebrow,
       .about-text h2 { text-align: center; }
@@ -480,10 +532,13 @@
     <a href="#home" class="nav-logo" aria-label="Sim Sigma home">
       <img src="logo-mockup.png" height="80" alt="Sim Sigma" style="width:auto;display:block;">
     </a>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
+    <button class="nav-hamburger" aria-label="Toggle navigation" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#services" onclick="closeNav()">Services</a></li>
+      <li><a href="#about" onclick="closeNav()">About</a></li>
+      <li><a href="#contact" onclick="closeNav()">Contact</a></li>
     </ul>
   </nav>
 
@@ -493,7 +548,8 @@
   <section class="hero" id="home" aria-label="Hero">
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-content">
-      <img src="logo-mockup-banner.png" alt="Sim Sigma" class="hero-logo-banner">
+      <h1 class="hero-title">Sim Sigma</h1>
+      <p class="hero-tagline">Outplay the Average</p>
       <a href="#contact" class="hero-cta">Get in Touch</a>
     </div>
   </section>
@@ -653,6 +709,14 @@
       if (service) text += ` I'm interested in: ${service}.`;
       if (message) text += ` ${message}`;
       window.open('https://wa.me/16262972756?text=' + encodeURIComponent(text.trim()), '_blank');
+    }
+
+    // ── Mobile nav ────────────────────────────────────────────
+    function toggleNav() {
+      document.getElementById('nav-links').classList.toggle('open');
+    }
+    function closeNav() {
+      document.getElementById('nav-links').classList.remove('open');
     }
 
     // ── Nav shrink on scroll ───────────────────────────────────
