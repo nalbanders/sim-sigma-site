@@ -11,27 +11,23 @@
   <style>
 
     /* ─── PALETTE ────────────────────────────────────────────── */
-    /*
-      Nature of golf: fairway green, sand bunker, sky & water,
-      warm stone, aged linen, the wood of a tee box.
-      Light background, not dark — air and space like a course.
-    */
     :root {
-      --linen:      #f3ede1;   /* primary bg — warm linen */
-      --stone:      #e6dfd0;   /* alt bg — stone/parchment */
-      --cream:      #f8f3e8;   /* near-white cream */
-      --green:      #2d5a3d;   /* fairway green — primary accent */
-      --green-lt:   #4a7c5a;   /* lighter green */
-      --green-dk:   #1a3a27;   /* deep green — anchor section bg */
-      --sand:       #c4a06a;   /* bunker sand / gold accent */
-      --sky:        #6e8fa4;   /* sky / water blue-grey */
-      --charcoal:   #1c1916;   /* warm near-black */
-      --warm-mid:   #4a4438;   /* medium warm text */
-      --warm-muted: #7a7060;   /* muted captions */
+      --linen:      #f3ede1;
+      --stone:      #e6dfd0;
+      --cream:      #f8f3e8;
+      --green:      #2d5a3d;
+      --green-lt:   #4a7c5a;
+      --green-dk:   #1a3a27;
+      --sand:       #c4a06a;
+      --sky:        #6e8fa4;
+      --charcoal:   #1c1916;
+      --warm-mid:   #4a4438;
+      --warm-muted: #7a7060;
       --border:     rgba(28,25,22,0.10);
       --border-lt:  rgba(248,243,232,0.14);
       --wa-green:   #25D366;
       --wa-dk:      #128C7E;
+      --neon:       #39D800;
     }
 
     /* ─── RESET ──────────────────────────────────────────────── */
@@ -46,7 +42,7 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
-    img { display: block; max-width: 100%; }
+    img, video { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
 
     /* ─── TYPOGRAPHY ─────────────────────────────────────────── */
@@ -67,7 +63,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.3rem 4rem;
+      padding: 0.85rem 4rem;
       background: rgba(3,4,3,0.95);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
@@ -77,16 +73,7 @@
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 0.65rem;
       text-decoration: none;
-    }
-    .nav-logo-text {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: #39D800;
     }
     .nav-links {
       display: flex;
@@ -101,68 +88,79 @@
       color: rgba(244,247,245,0.65);
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: #39D800; }
+    .nav-links a:hover { color: var(--neon); }
 
     /* ─── HERO ───────────────────────────────────────────────── */
-    /* Keep hero dark and dramatic — contrast with the light body below */
     .hero {
       position: relative;
       height: 100vh;
-      min-height: 620px;
+      min-height: 640px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: url('IMG_9075.jpeg') center 55% / cover no-repeat;
+      /* hero-screen.jpeg = the simulator gameplay screenshot you provided.
+         Save that image to the site folder as hero-screen.jpeg.          */
+      background: url('hero-cropped.jpeg') center center / cover no-repeat;
     }
+    /* Very light vignette — just darkens edges so the badge pops */
     .hero-overlay {
       position: absolute;
       inset: 0;
-      /* Warm dark green tint — feels like a golf course at dusk */
-      background: linear-gradient(
-        to bottom,
-        rgba(12,20,12,0.38) 0%,
-        rgba(15,22,14,0.55) 45%,
-        rgba(18,26,16,0.88) 100%
+      background: radial-gradient(
+        ellipse at center,
+        rgba(0,0,0,0.05) 0%,
+        rgba(0,0,0,0.45) 100%
       );
     }
-    .hero-content {
+
+    /* Diamond badge ─────────────────────────────────────────── */
+    .hero-badge {
       position: relative;
       z-index: 2;
-      padding: 0 2rem;
-      max-width: 900px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 520px;
+      height: 520px;
     }
-    .eyebrow {
-      display: inline-block;
-      font-size: 0.6rem;
+    .hero-badge-diamond {
+      position: absolute;
+      inset: 0;
+      background: rgba(3,4,3,0.86);
+      transform: rotate(45deg);
+      border: 1px solid rgba(57,216,0,0.28);
+      box-shadow: 0 0 60px rgba(57,216,0,0.08), inset 0 0 40px rgba(57,216,0,0.04);
+    }
+    .hero-badge-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0 3rem;
+    }
+    .hero-badge-content img {
+      width: 260px;
+      height: auto;
+    }
+    .hero-tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
       font-weight: 500;
       letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: var(--sand);
-      margin-bottom: 1.5rem;
+      color: rgba(244,247,245,0.72);
     }
-    .hero h1 {
-      color: var(--cream);
-      font-weight: 300;
-      margin-bottom: 1.2rem;
-      text-shadow: 0 2px 40px rgba(0,0,0,0.35);
-    }
-    .hero-tagline {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.1rem, 2.2vw, 1.55rem);
-      font-weight: 300;
-      font-style: italic;
-      color: rgba(248,243,232,0.70);
-      margin-bottom: 3rem;
-      letter-spacing: 0.05em;
-    }
-    .btn-hero {
+    .hero-cta {
       display: inline-block;
-      padding: 0.95rem 2.75rem;
-      border: 1px solid rgba(196,160,106,0.65);
+      margin-top: 0.4rem;
+      padding: 0.7rem 2rem;
+      border: 1px solid rgba(196,160,106,0.6);
       color: var(--cream);
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.64rem;
+      font-size: 0.58rem;
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
@@ -170,7 +168,7 @@
       cursor: pointer;
       transition: background 0.25s, border-color 0.25s, color 0.25s;
     }
-    .btn-hero:hover {
+    .hero-cta:hover {
       background: var(--sand);
       border-color: var(--sand);
       color: var(--charcoal);
@@ -183,9 +181,7 @@
       background: var(--green-dk);
       color: var(--cream);
     }
-
     .section-header { text-align: center; margin-bottom: 4.5rem; }
-
     .section-eyebrow {
       display: block;
       font-size: 0.6rem;
@@ -196,10 +192,8 @@
       margin-bottom: 0.8rem;
     }
     .section--green .section-eyebrow { color: var(--sand); }
-
     .section-header h2 { color: var(--charcoal); }
     .section--green .section-header h2 { color: var(--cream); }
-
     .section-rule {
       width: 2.5rem;
       height: 1px;
@@ -208,8 +202,6 @@
     }
 
     /* ─── SERVICES ───────────────────────────────────────────── */
-    /* Editorial cards: photo on top, clean text panel below.
-       No overlay — works with any photo regardless of crop.     */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -235,9 +227,7 @@
       display: block;
       transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
     }
-    .service-card:hover .service-card-photo {
-      transform: scale(1.04);
-    }
+    .service-card:hover .service-card-photo { transform: scale(1.04); }
     .service-card-body {
       padding: 2.1rem 1.9rem 2.4rem;
       border-top: 2px solid var(--sand);
@@ -250,10 +240,7 @@
       color: var(--sand);
       margin-bottom: 0.65rem;
     }
-    .service-card h3 {
-      color: var(--green);
-      margin-bottom: 0.9rem;
-    }
+    .service-card h3 { color: var(--green); margin-bottom: 0.9rem; }
     .service-card p {
       font-size: 0.8rem;
       line-height: 1.8;
@@ -269,17 +256,18 @@
       max-width: 1100px;
       margin: 0 auto;
     }
-    .about-photo-wrap {
+    .about-media-wrap {
       position: relative;
+      overflow: hidden;
     }
-    .about-photo {
+    /* Video fills the same frame as the old portrait photo */
+    .about-video {
       width: 100%;
       aspect-ratio: 3/4;
       object-fit: cover;
-      object-position: center 78%;
+      object-position: center center;
       display: block;
     }
-    /* Decorative offset border — a classic editorial touch */
     .about-photo-accent {
       position: absolute;
       bottom: -1.5rem;
@@ -291,10 +279,7 @@
       pointer-events: none;
     }
     .about-text .section-eyebrow { text-align: left; }
-    .about-text h2 {
-      color: var(--charcoal);
-      margin-bottom: 1.75rem;
-    }
+    .about-text h2 { color: var(--charcoal); margin-bottom: 1.75rem; }
     .about-rule {
       width: 2.5rem;
       height: 1px;
@@ -308,7 +293,7 @@
       margin-bottom: 1rem;
     }
 
-    /* ─── CONTACT (deep green anchor) ───────────────────────── */
+    /* ─── CONTACT ────────────────────────────────────────────── */
     .contact-inner {
       max-width: 680px;
       margin: 0 auto;
@@ -338,7 +323,6 @@
     }
     .btn-wa:hover { background: var(--wa-dk); }
     .btn-wa svg { width: 18px; height: 18px; flex-shrink: 0; }
-
     .contact-details {
       display: flex;
       gap: 3.5rem;
@@ -409,7 +393,6 @@
     .form-row textarea { resize: vertical; min-height: 130px; }
     .form-row input::placeholder,
     .form-row textarea::placeholder { color: rgba(248,243,232,0.28); }
-
     .btn-wa-form {
       width: 100%;
       display: flex;
@@ -471,9 +454,14 @@
 
     /* ─── RESPONSIVE ─────────────────────────────────────────── */
     @media (max-width: 960px) {
-      .nav { padding: 1.1rem 1.75rem; }
+      .nav { padding: 0.75rem 1.75rem; }
       .nav-links { display: none; }
       .section { padding: 5.5rem 1.5rem; }
+
+      .hero-badge { width: 340px; height: 340px; }
+      .hero-badge-content img { width: 180px; }
+      .hero-tagline { font-size: 0.54rem; letter-spacing: 0.22em; }
+      .hero-cta { display: none; }
 
       .services-grid {
         grid-template-columns: 1fr;
@@ -486,7 +474,7 @@
         grid-template-columns: 1fr;
         gap: 3rem;
       }
-      .about-photo { aspect-ratio: 4/3; }
+      .about-video { aspect-ratio: 4/3; }
       .about-photo-accent { display: none; }
       .about-text .section-eyebrow,
       .about-text h2 { text-align: center; }
@@ -498,7 +486,6 @@
     }
 
     @media (max-width: 480px) {
-      .hero h1 { font-size: clamp(2.8rem, 13vw, 4rem); }
       .wa-bubble { bottom: 1.25rem; right: 1.25rem; width: 52px; height: 52px; }
       .wa-bubble svg { width: 24px; height: 24px; }
     }
@@ -510,7 +497,7 @@
   <!-- ─── NAV ───────────────────────────────────────────────── -->
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <a href="#home" class="nav-logo" aria-label="Sim Sigma home">
-      <img src="logo-mockup.png" height="48" alt="Sim Sigma" style="width:auto;display:block;">
+      <img src="logo-mockup.png" height="80" alt="Sim Sigma" style="width:auto;display:block;">
     </a>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
@@ -520,19 +507,21 @@
   </nav>
 
   <!-- ─── HERO ──────────────────────────────────────────────── -->
-  <!-- Dark, dramatic hero contrasts against the light body below -->
+  <!-- Background: hero-screen.jpeg — save the simulator gameplay screenshot
+       to the site folder with that filename to activate this.            -->
   <section class="hero" id="home" aria-label="Hero">
     <div class="hero-overlay" aria-hidden="true"></div>
-    <div class="hero-content">
-      <span class="eyebrow">Southern California</span>
-      <h1>Sim Sigma</h1>
-      <p class="hero-tagline">Premium Golf Simulator Solutions</p>
-      <a href="#contact" class="btn-hero">Get in Touch</a>
+    <div class="hero-badge">
+      <div class="hero-badge-diamond" aria-hidden="true"></div>
+      <div class="hero-badge-content">
+        <img src="logo-mockup.png" alt="Sim Sigma">
+        <p class="hero-tagline">Outplay the Average</p>
+        <a href="#contact" class="hero-cta">Get in Touch</a>
+      </div>
     </div>
   </section>
 
   <!-- ─── SERVICES ──────────────────────────────────────────── -->
-  <!-- Editorial cards: photo + text. Clean crop, no overlay issues. -->
   <section class="section" id="services">
     <div class="section-header">
       <span class="section-eyebrow">What We Do</span>
@@ -542,7 +531,6 @@
     <div class="services-grid">
 
       <div class="service-card">
-        <!-- object-position tuned to show simulator screen + hardware -->
         <img class="service-card-photo"
              src="IMG_2322.jpeg"
              alt="Golf simulator equipment installation"
@@ -556,7 +544,6 @@
       </div>
 
       <div class="service-card">
-        <!-- object-position tuned to show finished turf, not ceiling -->
         <img class="service-card-photo"
              src="IMG_6963.jpeg"
              alt="Finished golf simulator studio with synthetic turf"
@@ -570,7 +557,6 @@
       </div>
 
       <div class="service-card">
-        <!-- object-position tuned to show simulator screen centre -->
         <img class="service-card-photo"
              src="IMG_9075.jpeg"
              alt="Golf simulator event rental setup"
@@ -589,26 +575,31 @@
   <!-- ─── ABOUT ─────────────────────────────────────────────── -->
   <section class="section section--stone" id="about">
     <div class="about-inner">
-      <div class="about-photo-wrap">
-        <!-- object-position tuned to show person working, not ceiling -->
-        <img class="about-photo"
-             src="IMG_6960.jpeg"
-             alt="Sim Sigma founder at work during studio build"
-             loading="lazy">
+      <div class="about-media-wrap">
+        <!-- Sarko's swing video — autoplays on scroll, loops first 5 seconds -->
+        <video
+          id="about-video"
+          class="about-video"
+          src="IMG_1058.mov"
+          muted
+          playsinline
+          preload="metadata"
+          aria-label="Sarko Nalband golf swing"
+        ></video>
         <div class="about-photo-accent" aria-hidden="true"></div>
       </div>
       <div class="about-text">
         <span class="section-eyebrow">About Us</span>
-        <h2>Built by Golfers,<br>Engineered with Precision</h2>
+        <h2>Built by a Golfer,<br>Engineered with Precision</h2>
         <div class="about-rule"></div>
-        <p>[Name] is an avid golfer, trained engineer, and finance professional based in Southern California. With a deep passion for the game and a technical eye for detail, he founded Sim Sigma to bring premium golf simulator experiences to players, businesses, and events.</p>
-        <p>Whether you're outfitting a home studio or planning a corporate activation, Sim Sigma delivers.</p>
+        <p>Sarko Nalband spent years as an electrical engineer and financial analyst before golf took over completely. After becoming obsessed with the game, he developed the Sim Sigma system — a data-driven approach to simulator training that helped him increase swing speed by 50% and drop his scoring average by 15 strokes in just a few months.</p>
+        <p>Today he brings that same analytical precision to every build. Sarko personally designs and oversees each installation, combining deep technical expertise with a golfer's eye to deliver simulator experiences that are dialed in from the ground up.</p>
+        <p>Based in Los Angeles, he works with clients across Southern California who are serious about their game.</p>
       </div>
     </div>
   </section>
 
   <!-- ─── CONTACT ────────────────────────────────────────────── -->
-  <!-- Deep fairway green — grounding anchor at the bottom of the page -->
   <section class="section section--green" id="contact">
     <div class="contact-inner">
       <div class="section-header">
@@ -684,7 +675,7 @@
 
   <!-- ─── SCRIPTS ────────────────────────────────────────────── -->
   <script>
-    // WhatsApp form pre-fill
+    // ── WhatsApp form ──────────────────────────────────────────
     function sendViaWhatsApp() {
       const name    = document.getElementById('form-name').value.trim();
       const service = document.getElementById('form-service').value;
@@ -700,11 +691,37 @@
       window.open('https://wa.me/16262972756?text=' + encodeURIComponent(text.trim()), '_blank');
     }
 
-    // Subtle nav shrink on scroll
+    // ── Nav shrink on scroll ───────────────────────────────────
     const nav = document.querySelector('.nav');
     window.addEventListener('scroll', () => {
-      nav.style.padding = window.scrollY > 60 ? '0.85rem 4rem' : '';
+      nav.style.padding = window.scrollY > 60 ? '0.5rem 4rem' : '';
     }, { passive: true });
+
+    // ── About video: autoplay on scroll, loop first 5 seconds ──
+    const aboutVideo = document.getElementById('about-video');
+    if (aboutVideo) {
+      // Clamp playback to first 5 seconds then loop
+      aboutVideo.addEventListener('timeupdate', () => {
+        if (aboutVideo.currentTime >= 5) {
+          aboutVideo.currentTime = 0;
+          aboutVideo.play();
+        }
+      });
+
+      // Play when at least 40% of the video is visible, pause when not
+      const videoObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            aboutVideo.play().catch(() => {});
+          } else {
+            aboutVideo.pause();
+            aboutVideo.currentTime = 0;
+          }
+        });
+      }, { threshold: 0.4 });
+
+      videoObserver.observe(aboutVideo);
+    }
   </script>
 
 </body>
