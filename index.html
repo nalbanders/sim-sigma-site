@@ -9,27 +9,37 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* ─── VARIABLES ─────────────────────────────────────────── */
+
+    /* ─── PALETTE ────────────────────────────────────────────── */
+    /*
+      Nature of golf: fairway green, sand bunker, sky & water,
+      warm stone, aged linen, the wood of a tee box.
+      Light background, not dark — air and space like a course.
+    */
     :root {
-      --bg:        #0d0d0d;
-      --bg-alt:    #161616;
-      --bg-card:   #1a1a1a;
-      --text:      #f5f5f0;
-      --text-muted:#9a9a94;
-      --accent:    #52b788;
-      --accent-dk: #2d6a4f;
-      --wa-green:  #25D366;
-      --wa-dk:     #128C7E;
-      --border:    rgba(255,255,255,0.07);
-      --overlay:   rgba(0,0,0,0.50);
+      --linen:      #f3ede1;   /* primary bg — warm linen */
+      --stone:      #e6dfd0;   /* alt bg — stone/parchment */
+      --cream:      #f8f3e8;   /* near-white cream */
+      --green:      #2d5a3d;   /* fairway green — primary accent */
+      --green-lt:   #4a7c5a;   /* lighter green */
+      --green-dk:   #1a3a27;   /* deep green — anchor section bg */
+      --sand:       #c4a06a;   /* bunker sand / gold accent */
+      --sky:        #6e8fa4;   /* sky / water blue-grey */
+      --charcoal:   #1c1916;   /* warm near-black */
+      --warm-mid:   #4a4438;   /* medium warm text */
+      --warm-muted: #7a7060;   /* muted captions */
+      --border:     rgba(28,25,22,0.10);
+      --border-lt:  rgba(248,243,232,0.14);
+      --wa-green:   #25D366;
+      --wa-dk:      #128C7E;
     }
 
-    /* ─── RESET ─────────────────────────────────────────────── */
+    /* ─── RESET ──────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { scroll-behavior: smooth; }
     body {
-      background: var(--bg);
-      color: var(--text);
+      background: var(--linen);
+      color: var(--charcoal);
       font-family: 'Montserrat', sans-serif;
       font-weight: 300;
       line-height: 1.75;
@@ -40,14 +50,14 @@
     a { color: inherit; text-decoration: none; }
 
     /* ─── TYPOGRAPHY ─────────────────────────────────────────── */
-    h1, h2, h3, h4 {
+    h1, h2, h3 {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 400;
       line-height: 1.1;
     }
-    h1 { font-size: clamp(3.2rem, 9vw, 7.5rem); letter-spacing: 0.04em; }
-    h2 { font-size: clamp(2rem, 5vw, 3.6rem); }
-    h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+    h1 { font-size: clamp(3rem, 8.5vw, 7.2rem); letter-spacing: 0.02em; }
+    h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); }
+    h3 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); }
 
     /* ─── NAV ────────────────────────────────────────────────── */
     .nav {
@@ -57,20 +67,26 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.4rem 4rem;
-      background: rgba(13,13,13,0.82);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      padding: 1.3rem 4rem;
+      background: rgba(243,237,225,0.92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
       transition: padding 0.3s;
     }
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 400;
-      letter-spacing: 0.22em;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+    }
+    .nav-logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
-      color: var(--text);
+      color: var(--green);
     }
     .nav-links {
       display: flex;
@@ -78,16 +94,17 @@
       list-style: none;
     }
     .nav-links a {
-      font-size: 0.65rem;
+      font-size: 0.63rem;
       font-weight: 500;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--warm-muted);
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover { color: var(--green); }
 
     /* ─── HERO ───────────────────────────────────────────────── */
+    /* Keep hero dark and dramatic — contrast with the light body below */
     .hero {
       position: relative;
       height: 100vh;
@@ -96,138 +113,151 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: url('IMG_9075.jpeg') center 40% / cover no-repeat;
+      background: url('IMG_9075.jpeg') center 55% / cover no-repeat;
     }
     .hero-overlay {
       position: absolute;
       inset: 0;
+      /* Warm dark green tint — feels like a golf course at dusk */
       background: linear-gradient(
         to bottom,
-        rgba(0,0,0,0.30) 0%,
-        rgba(0,0,0,0.55) 55%,
-        rgba(13,13,13,0.95) 100%
+        rgba(12,20,12,0.38) 0%,
+        rgba(15,22,14,0.55) 45%,
+        rgba(18,26,16,0.88) 100%
       );
     }
     .hero-content {
       position: relative;
       z-index: 2;
       padding: 0 2rem;
-      max-width: 960px;
+      max-width: 900px;
     }
     .eyebrow {
       display: inline-block;
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       font-weight: 500;
       letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.6rem;
+      color: var(--sand);
+      margin-bottom: 1.5rem;
     }
     .hero h1 {
-      color: var(--text);
-      margin-bottom: 1.4rem;
-      text-shadow: 0 2px 60px rgba(0,0,0,0.6);
+      color: var(--cream);
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 2px 40px rgba(0,0,0,0.35);
     }
     .hero-tagline {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.1rem, 2.5vw, 1.65rem);
+      font-size: clamp(1.1rem, 2.2vw, 1.55rem);
       font-weight: 300;
-      color: rgba(245,245,240,0.72);
-      margin-bottom: 3.2rem;
-      letter-spacing: 0.06em;
+      font-style: italic;
+      color: rgba(248,243,232,0.70);
+      margin-bottom: 3rem;
+      letter-spacing: 0.05em;
     }
-    .btn {
+    .btn-hero {
       display: inline-block;
-      padding: 1rem 2.8rem;
-      border: 1px solid var(--accent);
-      color: var(--text);
+      padding: 0.95rem 2.75rem;
+      border: 1px solid rgba(196,160,106,0.65);
+      color: var(--cream);
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.68rem;
+      font-size: 0.64rem;
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       background: transparent;
       cursor: pointer;
-      transition: background 0.25s, border-color 0.25s;
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
     }
-    .btn:hover {
-      background: var(--accent);
-      border-color: var(--accent);
+    .btn-hero:hover {
+      background: var(--sand);
+      border-color: var(--sand);
+      color: var(--charcoal);
     }
 
     /* ─── SECTION SCAFFOLDING ───────────────────────────────── */
     .section { padding: 8rem 2rem; }
-    .section--alt { background: var(--bg-alt); }
-    .section-header { text-align: center; margin-bottom: 5rem; }
-    .section-header h2 { color: var(--text); }
-    .section-header .eyebrow { margin-bottom: 0.75rem; }
+    .section--stone { background: var(--stone); }
+    .section--green {
+      background: var(--green-dk);
+      color: var(--cream);
+    }
+
+    .section-header { text-align: center; margin-bottom: 4.5rem; }
+
+    .section-eyebrow {
+      display: block;
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.8rem;
+    }
+    .section--green .section-eyebrow { color: var(--sand); }
+
+    .section-header h2 { color: var(--charcoal); }
+    .section--green .section-header h2 { color: var(--cream); }
+
+    .section-rule {
+      width: 2.5rem;
+      height: 1px;
+      background: var(--sand);
+      margin: 1.5rem auto 0;
+    }
 
     /* ─── SERVICES ───────────────────────────────────────────── */
+    /* Editorial cards: photo on top, clean text panel below.
+       No overlay — works with any photo regardless of crop.     */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      max-width: 1300px;
+      gap: 1.75rem;
+      max-width: 1240px;
       margin: 0 auto;
     }
     .service-card {
-      position: relative;
+      background: var(--cream);
+      border: 1px solid var(--border);
       overflow: hidden;
-      aspect-ratio: 3/4;
+      transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94),
+                  box-shadow 0.35s;
     }
-    .service-card-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(28,25,22,0.13);
     }
-    .service-card:hover .service-card-bg {
-      transform: scale(1.06);
+    .service-card-photo {
+      width: 100%;
+      height: 290px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
     }
-    .service-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.90) 0%,
-        rgba(0,0,0,0.35) 55%,
-        rgba(0,0,0,0.08) 100%
-      );
-      transition: background 0.3s;
+    .service-card:hover .service-card-photo {
+      transform: scale(1.04);
     }
-    .service-card:hover .service-card-overlay {
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.95) 0%,
-        rgba(0,0,0,0.55) 55%,
-        rgba(0,0,0,0.18) 100%
-      );
-    }
-    .service-card-content {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 2.75rem 2.25rem;
+    .service-card-body {
+      padding: 2.1rem 1.9rem 2.4rem;
+      border-top: 2px solid var(--sand);
     }
     .service-num {
-      font-size: 0.58rem;
+      font-size: 0.57rem;
       font-weight: 500;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--sand);
       margin-bottom: 0.65rem;
     }
     .service-card h3 {
-      color: var(--text);
+      color: var(--green);
       margin-bottom: 0.9rem;
     }
     .service-card p {
-      font-size: 0.78rem;
-      line-height: 1.7;
-      color: rgba(245,245,240,0.65);
-      max-width: 300px;
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: var(--warm-muted);
     }
 
     /* ─── ABOUT ──────────────────────────────────────────────── */
@@ -239,47 +269,46 @@
       max-width: 1100px;
       margin: 0 auto;
     }
-    .about-photo {
+    .about-photo-wrap {
       position: relative;
-      overflow: hidden;
     }
-    .about-photo img {
+    .about-photo {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
       aspect-ratio: 3/4;
-      filter: grayscale(15%) brightness(0.92);
-      transition: filter 0.4s;
+      object-fit: cover;
+      object-position: center 78%;
+      display: block;
     }
-    .about-photo:hover img { filter: grayscale(0%) brightness(1); }
-    .about-accent-line {
+    /* Decorative offset border — a classic editorial touch */
+    .about-photo-accent {
       position: absolute;
-      top: 2rem;
-      left: -1px;
-      width: 3px;
-      height: 5rem;
-      background: var(--accent);
+      bottom: -1.5rem;
+      right: -1.5rem;
+      width: 55%;
+      height: 55%;
+      border: 2px solid var(--sand);
+      z-index: -1;
+      pointer-events: none;
     }
-    .about-text .eyebrow { display: block; text-align: left; margin-bottom: 0.75rem; }
+    .about-text .section-eyebrow { text-align: left; }
     .about-text h2 {
-      color: var(--text);
-      margin-bottom: 2rem;
+      color: var(--charcoal);
+      margin-bottom: 1.75rem;
     }
-    .about-divider {
+    .about-rule {
       width: 2.5rem;
       height: 1px;
-      background: var(--accent);
-      margin-bottom: 2rem;
+      background: var(--green);
+      margin-bottom: 1.75rem;
     }
     .about-text p {
       font-size: 0.875rem;
-      color: var(--text-muted);
+      color: var(--warm-muted);
       line-height: 1.95;
-      margin-bottom: 1.1rem;
+      margin-bottom: 1rem;
     }
 
-    /* ─── CONTACT ────────────────────────────────────────────── */
+    /* ─── CONTACT (deep green anchor) ───────────────────────── */
     .contact-inner {
       max-width: 680px;
       margin: 0 auto;
@@ -287,21 +316,21 @@
     }
     .contact-sub {
       font-size: 0.875rem;
-      color: var(--text-muted);
+      color: rgba(248,243,232,0.60);
       margin-bottom: 3rem;
-      line-height: 1.8;
+      line-height: 1.85;
     }
     .btn-wa {
       display: inline-flex;
       align-items: center;
       gap: 0.65rem;
-      padding: 1.15rem 2.75rem;
+      padding: 1.1rem 2.75rem;
       background: var(--wa-green);
       color: #fff;
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.17em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       border-radius: 2px;
       transition: background 0.2s;
@@ -318,46 +347,46 @@
       margin-bottom: 4rem;
     }
     .contact-detail-label {
-      font-size: 0.58rem;
+      font-size: 0.57rem;
       font-weight: 500;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--sand);
       margin-bottom: 0.4rem;
     }
     .contact-detail a {
-      font-size: 0.85rem;
-      color: var(--text-muted);
+      font-size: 0.83rem;
+      color: rgba(248,243,232,0.60);
       transition: color 0.2s;
     }
-    .contact-detail a:hover { color: var(--text); }
+    .contact-detail a:hover { color: var(--cream); }
 
     /* ─── CONTACT FORM ───────────────────────────────────────── */
     .contact-form {
-      background: rgba(255,255,255,0.025);
-      border: 1px solid var(--border);
+      background: rgba(248,243,232,0.04);
+      border: 1px solid var(--border-lt);
       padding: 2.75rem;
       text-align: left;
     }
     .form-row { margin-bottom: 1.4rem; }
     .form-row label {
       display: block;
-      font-size: 0.58rem;
+      font-size: 0.57rem;
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--sand);
       margin-bottom: 0.55rem;
     }
     .form-row input,
     .form-row select,
     .form-row textarea {
       width: 100%;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.09);
-      color: var(--text);
+      background: rgba(248,243,232,0.05);
+      border: 1px solid rgba(248,243,232,0.14);
+      color: var(--cream);
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       font-weight: 300;
       padding: 0.9rem 1rem;
       outline: none;
@@ -368,18 +397,19 @@
     }
     .form-row select {
       cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2352b788' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c4a06a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 1rem center;
       padding-right: 2.5rem;
     }
-    .form-row select option { background: #1a1a1a; }
+    .form-row select option { background: var(--green-dk); color: var(--cream); }
     .form-row input:focus,
     .form-row select:focus,
-    .form-row textarea:focus { border-color: var(--accent); }
+    .form-row textarea:focus { border-color: var(--sand); }
     .form-row textarea { resize: vertical; min-height: 130px; }
     .form-row input::placeholder,
-    .form-row textarea::placeholder { color: rgba(154,154,148,0.45); }
+    .form-row textarea::placeholder { color: rgba(248,243,232,0.28); }
+
     .btn-wa-form {
       width: 100%;
       display: flex;
@@ -390,9 +420,9 @@
       background: var(--wa-green);
       color: #fff;
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.17em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       border: none;
       border-radius: 2px;
@@ -404,22 +434,18 @@
 
     /* ─── FOOTER ─────────────────────────────────────────────── */
     footer {
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-      padding: 2.75rem 2rem;
+      background: var(--charcoal);
+      padding: 2.5rem 2rem;
       text-align: center;
     }
     footer p {
-      font-size: 0.72rem;
-      color: var(--text-muted);
+      font-size: 0.7rem;
+      color: rgba(248,243,232,0.38);
       letter-spacing: 0.06em;
       line-height: 2;
     }
-    footer a {
-      color: var(--text-muted);
-      transition: color 0.2s;
-    }
-    footer a:hover { color: var(--text); }
+    footer a { color: rgba(248,243,232,0.38); transition: color 0.2s; }
+    footer a:hover { color: rgba(248,243,232,0.75); }
 
     /* ─── FLOATING WHATSAPP BUBBLE ───────────────────────────── */
     .wa-bubble {
@@ -427,64 +453,66 @@
       bottom: 2rem;
       right: 2rem;
       z-index: 999;
-      width: 60px;
-      height: 60px;
+      width: 58px;
+      height: 58px;
       background: var(--wa-green);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 28px rgba(37,211,102,0.38);
+      box-shadow: 0 4px 24px rgba(37,211,102,0.35);
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .wa-bubble:hover {
       transform: scale(1.1);
-      box-shadow: 0 6px 36px rgba(37,211,102,0.55);
+      box-shadow: 0 6px 32px rgba(37,211,102,0.5);
     }
-    .wa-bubble svg { width: 30px; height: 30px; fill: #fff; }
+    .wa-bubble svg { width: 28px; height: 28px; fill: #fff; }
 
     /* ─── RESPONSIVE ─────────────────────────────────────────── */
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       .nav { padding: 1.1rem 1.75rem; }
       .nav-links { display: none; }
-
       .section { padding: 5.5rem 1.5rem; }
 
       .services-grid {
         grid-template-columns: 1fr;
-        gap: 3px;
+        gap: 1.25rem;
+        max-width: 560px;
       }
-      .service-card { aspect-ratio: 16/9; }
-      .service-card-bg { background-position: center 30%; }
+      .service-card-photo { height: 240px; }
 
       .about-inner {
         grid-template-columns: 1fr;
         gap: 3rem;
       }
-      .about-photo img { aspect-ratio: 4/3; }
-      .about-accent-line { display: none; }
-      .about-text .eyebrow,
+      .about-photo { aspect-ratio: 4/3; }
+      .about-photo-accent { display: none; }
+      .about-text .section-eyebrow,
       .about-text h2 { text-align: center; }
-      .about-divider { margin-left: auto; margin-right: auto; }
+      .about-rule { margin: 0 auto 1.75rem; }
       .about-text p { text-align: center; }
 
       .contact-details { gap: 2rem; }
-
-      .contact-form { padding: 2rem 1.5rem; }
+      .contact-form { padding: 2rem 1.25rem; }
     }
 
     @media (max-width: 480px) {
       .hero h1 { font-size: clamp(2.8rem, 13vw, 4rem); }
       .wa-bubble { bottom: 1.25rem; right: 1.25rem; width: 52px; height: 52px; }
-      .wa-bubble svg { width: 26px; height: 26px; }
+      .wa-bubble svg { width: 24px; height: 24px; }
     }
+
   </style>
 </head>
 <body>
 
   <!-- ─── NAV ───────────────────────────────────────────────── -->
   <nav class="nav" role="navigation" aria-label="Main navigation">
-    <a href="#home" class="nav-logo">Sim Sigma</a>
+    <a href="#home" class="nav-logo" aria-label="Sim Sigma home">
+      <img src="logo-assets/sim-sigma-icon.svg" height="44" alt="" aria-hidden="true" style="width:auto;display:block;">
+      <span class="nav-logo-text">Sim Sigma</span>
+    </a>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
@@ -493,51 +521,63 @@
   </nav>
 
   <!-- ─── HERO ──────────────────────────────────────────────── -->
+  <!-- Dark, dramatic hero contrasts against the light body below -->
   <section class="hero" id="home" aria-label="Hero">
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-content">
       <span class="eyebrow">Southern California</span>
       <h1>Sim Sigma</h1>
       <p class="hero-tagline">Premium Golf Simulator Solutions</p>
-      <a href="#contact" class="btn">Get in Touch</a>
+      <a href="#contact" class="btn-hero">Get in Touch</a>
     </div>
   </section>
 
   <!-- ─── SERVICES ──────────────────────────────────────────── -->
-  <section class="section section--alt" id="services">
+  <!-- Editorial cards: photo + text. Clean crop, no overlay issues. -->
+  <section class="section" id="services">
     <div class="section-header">
-      <span class="eyebrow">What We Do</span>
+      <span class="section-eyebrow">What We Do</span>
       <h2>Our Services</h2>
+      <div class="section-rule"></div>
     </div>
     <div class="services-grid">
 
-      <!-- Equipment Sales -->
       <div class="service-card">
-        <div class="service-card-bg" style="background-image: url('IMG_2322.jpeg')" role="img" aria-label="Golf simulator equipment installation"></div>
-        <div class="service-card-overlay" aria-hidden="true"></div>
-        <div class="service-card-content">
+        <!-- object-position tuned to show simulator screen + hardware -->
+        <img class="service-card-photo"
+             src="IMG_2322.jpeg"
+             alt="Golf simulator equipment installation"
+             style="object-position: center 38%;"
+             loading="lazy">
+        <div class="service-card-body">
           <p class="service-num">01</p>
           <h3>Equipment Sales</h3>
           <p>Golf simulator hardware and technology from leading brands — launch monitors, projectors, impact screens, hitting mats, and complete system packages.</p>
         </div>
       </div>
 
-      <!-- Studio Design & Build -->
       <div class="service-card">
-        <div class="service-card-bg" style="background-image: url('IMG_6963.jpeg')" role="img" aria-label="Finished golf simulator studio"></div>
-        <div class="service-card-overlay" aria-hidden="true"></div>
-        <div class="service-card-content">
+        <!-- object-position tuned to show finished turf, not ceiling -->
+        <img class="service-card-photo"
+             src="IMG_6963.jpeg"
+             alt="Finished golf simulator studio with synthetic turf"
+             style="object-position: center 88%;"
+             loading="lazy">
+        <div class="service-card-body">
           <p class="service-num">02</p>
           <h3>Studio Design &amp; Build</h3>
           <p>Full enclosure design, build-out, and professional installation — from room planning and turf selection to final system calibration and setup.</p>
         </div>
       </div>
 
-      <!-- Event Rentals -->
       <div class="service-card">
-        <div class="service-card-bg" style="background-image: url('IMG_9075.jpeg')" role="img" aria-label="Golf simulator event setup"></div>
-        <div class="service-card-overlay" aria-hidden="true"></div>
-        <div class="service-card-content">
+        <!-- object-position tuned to show simulator screen centre -->
+        <img class="service-card-photo"
+             src="IMG_9075.jpeg"
+             alt="Golf simulator event rental setup"
+             style="object-position: center 42%;"
+             loading="lazy">
+        <div class="service-card-body">
           <p class="service-num">03</p>
           <h3>Event Rentals</h3>
           <p>Mobile golf simulator rentals for corporate events, private parties, brand activations, and hospitality experiences throughout Southern California.</p>
@@ -548,16 +588,20 @@
   </section>
 
   <!-- ─── ABOUT ─────────────────────────────────────────────── -->
-  <section class="section" id="about">
+  <section class="section section--stone" id="about">
     <div class="about-inner">
-      <div class="about-photo">
-        <div class="about-accent-line" aria-hidden="true"></div>
-        <img src="IMG_6960.jpeg" alt="Sim Sigma studio build in progress" loading="lazy">
+      <div class="about-photo-wrap">
+        <!-- object-position tuned to show person working, not ceiling -->
+        <img class="about-photo"
+             src="IMG_6960.jpeg"
+             alt="Sim Sigma founder at work during studio build"
+             loading="lazy">
+        <div class="about-photo-accent" aria-hidden="true"></div>
       </div>
       <div class="about-text">
-        <span class="eyebrow">About Us</span>
+        <span class="section-eyebrow">About Us</span>
         <h2>Built by Golfers,<br>Engineered with Precision</h2>
-        <div class="about-divider" aria-hidden="true"></div>
+        <div class="about-rule"></div>
         <p>[Name] is an avid golfer, trained engineer, and finance professional based in Southern California. With a deep passion for the game and a technical eye for detail, he founded Sim Sigma to bring premium golf simulator experiences to players, businesses, and events.</p>
         <p>Whether you're outfitting a home studio or planning a corporate activation, Sim Sigma delivers.</p>
       </div>
@@ -565,17 +609,22 @@
   </section>
 
   <!-- ─── CONTACT ────────────────────────────────────────────── -->
-  <section class="section section--alt" id="contact">
+  <!-- Deep fairway green — grounding anchor at the bottom of the page -->
+  <section class="section section--green" id="contact">
     <div class="contact-inner">
       <div class="section-header">
-        <span class="eyebrow">Get in Touch</span>
+        <span class="section-eyebrow">Get in Touch</span>
         <h2>Let's Build Something</h2>
+        <div class="section-rule"></div>
       </div>
 
-      <p class="contact-sub">Questions about equipment, a build project, or booking a rental?<br>Reach out on WhatsApp — we respond fast.</p>
+      <p class="contact-sub">
+        Questions about equipment, a build project, or booking a rental?<br>
+        Reach out on WhatsApp — we respond fast.
+      </p>
 
       <a href="https://wa.me/16262972756" class="btn-wa" target="_blank" rel="noopener noreferrer" aria-label="Message Sim Sigma on WhatsApp">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Message on WhatsApp
       </a>
 
@@ -590,8 +639,7 @@
         </div>
       </div>
 
-      <!-- WhatsApp pre-fill form -->
-      <div class="contact-form" role="form" aria-label="Contact form">
+      <div class="contact-form" role="form" aria-label="Send a message via WhatsApp">
         <div class="form-row">
           <label for="form-name">Your Name</label>
           <input type="text" id="form-name" placeholder="Full name" autocomplete="name">
@@ -611,7 +659,7 @@
           <textarea id="form-message" placeholder="Tell us about your project or event…"></textarea>
         </div>
         <button type="button" class="btn-wa-form" onclick="sendViaWhatsApp()">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Send via WhatsApp
         </button>
       </div>
@@ -642,28 +690,21 @@
       const name    = document.getElementById('form-name').value.trim();
       const service = document.getElementById('form-service').value;
       const message = document.getElementById('form-message').value.trim();
-
       if (!name && !message) {
         alert('Please fill in at least your name or a message before sending.');
         return;
       }
-
       let text = 'Hi Sim Sigma!';
       if (name)    text += ` My name is ${name}.`;
       if (service) text += ` I'm interested in: ${service}.`;
       if (message) text += ` ${message}`;
-
       window.open('https://wa.me/16262972756?text=' + encodeURIComponent(text.trim()), '_blank');
     }
 
     // Subtle nav shrink on scroll
     const nav = document.querySelector('.nav');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 60) {
-        nav.style.padding = '0.9rem 4rem';
-      } else {
-        nav.style.padding = '';
-      }
+      nav.style.padding = window.scrollY > 60 ? '0.85rem 4rem' : '';
     }, { passive: true });
   </script>
 

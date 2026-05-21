@@ -1,0 +1,9 @@
+:root {
+  --sim-sigma-green: #39D800;
+  --sim-sigma-white: #F4F7F5;
+  --sim-sigma-black: #030403;
+}
+.logo-neon-green {
+  color: var(--sim-sigma-green);
+  filter: drop-shadow(0 0 6px var(--sim-sigma-green)) drop-shadow(0 0 18px var(--sim-sigma-green));
+}
