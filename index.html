@@ -512,7 +512,9 @@
         gap: 1.25rem;
         max-width: 560px;
       }
-      .service-card-photo { height: 240px; }
+      .service-card-photo { height: 320px; }
+      /* shrink contact headline to keep nowrap on one line */
+      #contact h2 { font-size: clamp(1.1rem, 5.5vw, 2rem); }
 
       .about-inner {
         grid-template-columns: 1fr;
