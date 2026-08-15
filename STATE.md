@@ -4,7 +4,7 @@
 ---
 
 ## Last updated
-2026-08-15 — Session: Armen + Claude (Cowork). Phase 3 BUILT + both repos PUSHED (bot: sim-sigma-ops 42efa60; this repo: 94ee4ac). Launch = manual steps in `sim-sigma-ops/SETUP.md`. ⚠️ Untracked in this PUBLIC repo's folder: `Invoice Folder/` + `drive-download-…/` — never `git add` these (customer/tax docs); move them out of the repo folder (e.g. to `financials/`).
+2026-08-15 — Session: Armen + Claude (Cowork). Phase 3 BUILT + both repos PUSHED (bot: sim-sigma-ops 42efa60; this repo: 94ee4ac). Launch = manual steps in `sim-sigma-ops/SETUP.md`. Repo hazard closed same day: `Invoice Folder/` + `drive-download-…/` (customer/tax docs, were untracked inside this PUBLIC repo) moved to `../financials/sim-sigma/`. Keep records out of this folder.
 
 Prior: 2026-08-14 — Phase 2 COMPLETE: Stripe invoicing live, first invoice PAID ($3,000, Hochan Chung).
 
