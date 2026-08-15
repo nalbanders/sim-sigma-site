@@ -4,7 +4,9 @@
 ---
 
 ## Last updated
-2026-08-14 — Session: Armen + Claude (Cowork). Phase 2 COMPLETE: Stripe invoicing live, first invoice PAID ($3,000, Hochan Chung). ROADMAP.md created; next phase = Telegram bot (see next-phase-prompt.md). Pending commit.
+2026-08-15 — Session: Armen + Claude (Cowork). Phase 3 BUILT: Telegram invoicing bot code complete in NEW repo folder `../sim-sigma-ops/` (own private repo — decided with Armen; site repo is public, bot state carries customer data). Launch = manual steps in `sim-sigma-ops/SETUP.md`. This repo unchanged except docs.
+
+Prior: 2026-08-14 — Phase 2 COMPLETE: Stripe invoicing live, first invoice PAID ($3,000, Hochan Chung).
 
 ---
 
@@ -56,7 +58,7 @@ Sim Sigma is **NOT an LLC**. It is a **sole proprietorship: Sarko Nalband, DBA "
 
 ## Next phase
 
-**Telegram invoicing bot** — full spec in `next-phase-prompt.md`, backlog in `ROADMAP.md`. Stripe API + LLM, group chat, image reading, memory (Nalbana/Gleamery bot patterns). Designed to expand into Shopify + Sarko-facing FP&A.
+**Telegram invoicing bot — BUILT 2026-08-15**, lives in its own private repo: `../sim-sigma-ops/` (Gleamery chassis + Stripe). Not yet launched — Armen's manual steps in `sim-sigma-ops/SETUP.md` (repo create, restricted key + probe, BotFather, secrets, webhook, live $1 test). Orientation: `sim-sigma-ops/README.md`; state: `sim-sigma-ops/STATE.md`.
 
 ---
 

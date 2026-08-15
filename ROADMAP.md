@@ -3,11 +3,9 @@
 
 ---
 
-## Next up (Phase 3): Telegram invoicing bot — "Sim Sigma ops agent"
+## Next up: launch the Telegram bot (Phase 3 code is BUILT — 2026-08-15)
 
-Full session prompt: `next-phase-prompt.md`. Summary:
-
-Telegram bot with Stripe API access + LLM brain so Sarko can create/send invoices by chatting (text or photo of a quote/order). Modeled on the Nalbana and Gleamery bots — group chat aware, image reading, conversation memory. Designed to expand: Shopify order lookups, Sarko-facing FP&A (revenue, fees, payout tracking) later.
+Bot lives in its own private repo: `../sim-sigma-ops/` (Gleamery chassis + Stripe; conversational invoicing with ✅/❌ approval cards, finalize-only, status queries, image reading, memory, group chat). Remaining work is Armen's manual launch steps — `sim-sigma-ops/SETUP.md`: create repo, Stripe restricted key + probe, BotFather + group, secrets, webhook, live $1 end-to-end test. Bot backlog (Shopify tools, Sarko FP&A, void action) now tracked in `sim-sigma-ops/STATE.md`.
 
 ## Near-term (days, not sessions)
 
