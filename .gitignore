@@ -6,5 +6,8 @@
 # Product assets (local only — do not push to GitHub)
 Carls Product Assets/
 
+# Sensitive business documents (DL, EIN letter, DBA statement — NEVER push)
+From Sarko/
+
 # Zip downloads
 *.zip

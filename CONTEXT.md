@@ -12,7 +12,7 @@ Sim Sigma Golf — Sarko Nalband's golf simulator company based in Los Angeles. 
 
 Owner: Sarko Nalband (sarkology@yahoo.com, 626-297-2756)
 Project managed by: Armen Nalband (nalbana@gmail.com)
-Business entity: Sim Sigma LLC (EIN: 41-4080163)
+Business entity: Sole proprietorship — Sarko Nalband, DBA "Sim Sigma" (EIN: 41-4080163; FBN filed LA County 1/23/2026, expires 1/23/2031; CDTFA Seller's Permit 0-055-876-928). NOT an LLC.
 Business address: 4125 S Figueroa St, 317, Los Angeles CA 90037
 
 ---
